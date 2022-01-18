@@ -7,6 +7,7 @@ use App\Http\Requests\Store\StoreInvitationRequest;
 
 class InvitationController extends Controller
 {
+
     /**
      * Store a newly created resource in storage.
      *
