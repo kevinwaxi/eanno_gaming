@@ -39,4 +39,8 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
         });
         Route::apiResource('users', UserController::class);
     });
+    Route::group(['prefix' => 'user'], function () {
+        Route::apiResource('booking', BookingController::class);
+        Route::apiResource('games', GameController::class);
+    });
 });

@@ -1,79 +1,78 @@
 @extends('layouts.auth')
 
 @section('content')
-  <div class="row justify-content-center form-bg-image"
-    data-background-lg="{{ asset('assets/img/illustrations/signin.svg') }}"
-    style="background: url(&quot;{{ asset('/assets/img/illustrations/signin.svg') }}&quot;);">
-    <div class="col-12 d-flex align-items-center justify-content-center">
-      <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-        <div class="text-center text-md-center mb-4 mt-md-0">
-          <h1 class="mb-0 h3">Sign in to our platform</h1>
+  <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg"
+    style="background-image: url('assets/img/curved-images/curved8.jpg');">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 text-center mx-auto">
+          <h1 class="text-white mb-2 mt-5">Welcome!</h1>
+          <p class="text-lead text-white">This is Eanno Gamming Private Comuninity area.</p>
         </div>
-        <form action="{{ route('login') }}" method="POST" class="mt-4">
-          @csrf
-          <div class="form-group mb-4">
-            <label for="email">Your Email</label>
-            <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">
-                <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
-                  </path>
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z">
-                  </path>
-                </svg>
-              </span>
-              <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                placeholder="example@company.com" value="{{ old('email') }}" autofocus="" required="">
-              @error('email')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-              @enderror
-            </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+      <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+        <div class="card z-index-0">
+
+          <div class="card-header text-center pt-4">
+            <h5>Sign in</h5>
           </div>
-          <div class="form-group">
-            <div class="form-group mb-4">
-              <label for="password">Your Password</label>
-              <div class="input-group">
-                <span class="input-group-text" id="basic-addon2">
-                  <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                      clip-rule="evenodd">
-                    </path>
-                  </svg>
-                </span>
-                <input type="password" name="password" placeholder="Password"
-                  class="form-control @error('password') is-invalid @enderror" required="">
+          <div class="card-body">
+
+            @if (session('message'))
+              <div class="alert alert-light" role="alert">
+                <strong>Sorry !</strong> {{ session('message') }}
+              </div>
+            @endif
+
+            <form method="POST" action="{{ route('login') }}">
+              @csrf
+              <div class="mb-3">
+                <input id="email" type="email" placeholder="Email Address"
+                  class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
+                  required autocomplete="email" autofocus>
+
+                @error('email')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+
+              <div class="mb-3">
+                <input id="password" type="password" placeholder="Password"
+                  class="form-control @error('password') is-invalid @enderror" name="password" required
+                  autocomplete="current-password">
+
                 @error('password')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                 @enderror
               </div>
-            </div>
-            <div class="d-flex justify-content-between align-items-top mb-4">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="remember">
-                <label class="form-check-label mb-0" for="remember">
-                  Remember me
-                </label>
+
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
               </div>
-              <div><a href="#" class="small text-right">Lost password?</a>
+
+              <div class="text-center">
+                <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2">{{ __('Login') }}</button>
               </div>
-            </div>
+              <div class="mb-2 position-relative text-center">
+                <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
+                  or
+                </p>
+              </div>
+              <div class="text-center">
+                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+              </div>
+            </form>
           </div>
-          <div class="d-grid"><button type="submit" class="btn btn-gray-800">Sign in</button>
-          </div>
-        </form>
-        <div class="d-flex justify-content-center align-items-center mt-4"><span class="fw-normal">Not
-            registered?
-            <a href="{{ route('requestInvitation') }}" class="fw-bold">
-              Create account
-            </a>
-          </span>
         </div>
       </div>
     </div>

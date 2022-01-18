@@ -1,137 +1,107 @@
 @extends('layouts.auth')
 
 @section('content')
-  <div class="row justify-content-center form-bg-image"
-    data-background-lg="{{ asset('assets/img/illustrations/signin.svg') }}"
-    style="background: url(&quot;{{ asset('/assets/img/illustrations/signin.svg') }}&quot;);">
-    <div class="col-12 d-flex align-items-center justify-content-center">
-      <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-        <div class="text-center text-md-center mb-4 mt-md-0">
-          <h1 class="mb-0 h3">Register Here</h1>
+  <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg"
+    style="background-image: url('assets/img/curved-images/curved8.jpg');">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 text-center mx-auto">
+          <h1 class="text-white mb-2 mt-5">Welcome!</h1>
+          <p class="text-lead text-white">This is Eanno Gaming dashboard area.</p>
         </div>
-        <form action="{{ route('register') }}" method="POST" class="mt-4">
-          @csrf
-          <div class="form-group mb-4">
-            <label for="email">Your Email</label>
-            <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">
-                <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
-                  </path>
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z">
-                  </path>
-                </svg>
-              </span>
-              <input type="email" class="form-control disabled @error('email') is-invalid @enderror"
-                placeholder="{{ $email }}" value="{{ $email }}" autofocus="" disabled required="">
-              <input id="email" type="hidden" class="form-control disabled" name="email" value="{{ $email }}">
-              @error('email')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-              @enderror
-            </div>
-          </div>
-          <div class="form-group mb-4">
-            <label for="email">Your Phone</label>
-            <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">
-                <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
-                  </path>
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z">
-                  </path>
-                </svg>
-              </span>
-              <input type="phone" class="form-control disabled @error('phone') is-invalid @enderror"
-                placeholder="{{ $phone }}" value="{{ $phone }}" autofocus="" disabled required="">
-              <input id="phone" type="hidden" class="form-control disabled" name="phone" value="{{ $phone }}">
-              @error('phone')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-              @enderror
-            </div>
-          </div>
-          <div class="form-group mb-4">
-            <div class="form-group mb-4">
-              <label for="name">Your Name</label>
-              <div class="input-group">
-                <span class="input-group-text" id="basic-addon2">
-                  <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                      clip-rule="evenodd">
-                    </path>
-                  </svg>
-                </span>
-                <input type="text" name="name" placeholder="john doe "
-                  class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required="">
-                @error('name')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-            </div>
-          </div>
-          <div class="form-group mb-4">
-            <div class="form-group mb-4">
-              <label for="password">Your Password</label>
-              <div class="input-group">
-                <span class="input-group-text" id="basic-addon2">
-                  <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                      clip-rule="evenodd">
-                    </path>
-                  </svg>
-                </span>
-                <input type="password" name="password" placeholder="Password"
-                  class="form-control @error('password') is-invalid @enderror" required="">
-                @error('password')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="form-group mb-4">
-              <label for="password">Repeat Password</label>
-              <div class="input-group">
-                <span class="input-group-text" id="basic-addon2">
-                  <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                      clip-rule="evenodd">
-                    </path>
-                  </svg>
-                </span>
-                <input type="password" name="password_confirmation" placeholder="Password"
-                  class="form-control @error('password_confirmation') is-invalid @enderror" required="">
-                @error('password_confirmation')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-            </div>
-          </div>
       </div>
-      <div class="d-grid">
-        <button type="submit" class="btn btn-gray-800">
-          {{ __('Register') }}
-        </button>
-      </div>
-      </form>
     </div>
   </div>
+  <div class="container">
+    <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+      <div class="col-xl-7 col-lg-5 col-md-7 mx-auto">
+        <div class="card z-index-0">
+          <div class="card-header text-center pt-4">
+            <h5>Register</h5>
+          </div>
+          <div class="card-body">
+            <form method="POST" action="{{ route('register') }}">
+              @csrf
+              <div class="row mb-3">
+                <div class="col-6">
+                  <input type="email" placeholder="Email Address"
+                    class="form-control disabled @error('email') is-invalid @enderror" value="{{ $email }}"
+                    required autofocus>
+                  <input type="hidden" name="email" value="{{ $email }}">
+                  @error('email')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+
+                <div class="col-6">
+                  <input type="tel" class="form-control disabled @error('phone') is-invalid @enderror" disabled
+                    value="{{ $phone }}" placeholder="Mobile Number" required autofocus>
+                  <input type="hidden" value="{{ $phone }}" name="phone">
+                  @error('phone')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-12">
+                  <input id="name" type="name" placeholder="Full Name"
+                    class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"
+                    required autofocus>
+
+                  @error('name')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <div class="col-8">
+                  <input type="name" placeholder="username" class="form-control @error('username') is-invalid @enderror"
+                    name="username" value="{{ old('username') }}" required autofocus>
+
+                  @error('username')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-6">
+                  <input type="password" placeholder="Password"
+                    class="form-control @error('password') is-invalid @enderror" name="password" required
+                    autocomplete="current-password">
+                  @error('password')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+                <div class="col-6">
+                  <input id="password-confirm" type="password" placeholder="Confirm Password"
+                    class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required>
+                  @error('password-confirm')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2">{{ __('Register') }}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 @endsection
